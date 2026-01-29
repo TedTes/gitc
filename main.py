@@ -82,3 +82,12 @@ def create_tree(directory='.'):
    
     # Write tree object
     return write_object(tree_content, 'tree')
+
+
+import time
+
+def create_commit(tree_hash, parent_hash, message, author="User <user@example.com>"):
+    """Create commit object"""
+    timestamp = int(time.time())
+    timezone = "+0000"
+    author_line = f"{author} {timestamp} {timezone}"
