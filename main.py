@@ -221,3 +221,13 @@ def log():
         print()
         if 'parent ' not in content.decode():
             break
+
+
+def cat_file(obj_hash , show_type = False , show_size = False):
+     """Display object content"""
+
+     try:
+        obj_type, content = read_object(obj_hash)
+     except FileNotFoundError:
+        print(f"Object {obj_hash} not found")
+        return
