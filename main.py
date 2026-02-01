@@ -223,11 +223,23 @@ def log():
             break
 
 
-def cat_file(obj_hash , show_type = False , show_size = False):
-     """Display object content"""
-
-     try:
+def cat_file(obj_hash, show_type=False, show_size=False):  # ← NEW function
+    """Display object content"""
+    try:
         obj_type, content = read_object(obj_hash)
-     except FileNotFoundError:
+    except FileNotFoundError:
         print(f"Object {obj_hash} not found")
         return
+    
+    if show_type:  
+        print(obj_type)
+        return
+    if show_size:
+        print(len(content))
+        return
+    
+    # Display content based on type
+    if obj_type == 'blob':
+        print(content.decode())
+    elif obj_type == 'commit':
+        print(content.decode())
